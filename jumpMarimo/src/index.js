@@ -11,22 +11,23 @@ let life = 10;
  */
 //
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+let canvas = document.getElementById("myCanvas");
+let ctx = canvas.getContext("2d");
 // 원의 반지름
-var ballRadius = 10;
+let ballRadius = 10;
 //
-var x = ballRadius + 40;
-var y = canvas.height - 10;
-var dx = 2;
-var dy = -2;
+let x = ballRadius + 40;
+let y = canvas.height - 10;
+let dx = 2;
+let dy = -2;
 let jumping = false;
 let jumps = [];
 
 function drawBall() {
   const circle = new Path2D();
   circle.arc(x, y, ballRadius, 0, Math.PI * 2);
-  circle.fillStyle = "green";
+  circle.fillStyle = "blue";
+
   ctx.fill(circle);
 }
 
@@ -60,7 +61,7 @@ function drawBackground() {
     ctx.beginPath();
     ctx.rect(obstacle.x, obstacle.y - 20, 10, 20);
 
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "green";
     ctx.fill();
     ctx.closePath();
   });
@@ -150,8 +151,13 @@ function refreshLife() {
   document.querySelector(".life").innerHTML = `LIFE :${life}`;
 }
 
+let img = new Image(); // Create new img element
+img.addEventListener("load", () => {}, false);
+img.src = "./src/myImage.jpg";
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   drawBall();
   drawBackground();
   // jumpAction(); // 1 jump
@@ -162,6 +168,5 @@ function draw() {
   detectCollision();
 }
 
-// draw();
 resetObstacles();
 setInterval(draw, 23);
