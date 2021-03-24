@@ -10,6 +10,7 @@ let life = 10;
  * [ ] jump limit
  */
 //
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 // 원의 반지름
@@ -21,15 +22,14 @@ var dx = 2;
 var dy = -2;
 let jumping = false;
 let jumps = [];
-function drawBall() {
-  // 원
 
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "green";
-  ctx.fill();
-  ctx.closePath();
+function drawBall() {
+  const circle = new Path2D();
+  circle.arc(x, y, ballRadius, 0, Math.PI * 2);
+  circle.fillStyle = "green";
+  ctx.fill(circle);
 }
+
 let obstacles = [];
 let backgroundWidth = canvas.width;
 const count = 4;
